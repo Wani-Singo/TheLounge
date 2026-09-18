@@ -16,12 +16,19 @@ public class LoungeLogin {
     public String Password;  
     public String cellNumber;
     
+    public LoungeLogin(){}
     public LoungeLogin(String firstName, String lastName, String userName, String Password, String cellNumber){
         this.firstName = firstName;
         this.lastName = lastName;
         this.userName = userName;
         this.Password = Password;
         this.cellNumber = cellNumber; 
+    }
+    public void setFirstName(String firstName){
+        this.firstName = firstName;
+    }
+    public void setLastName(String lastName){
+        this.lastName = lastName;
     }
     public boolean checkuserName(){
         return userName.contains("_")&& userName.length() <= 5;
@@ -37,6 +44,7 @@ public class LoungeLogin {
         return hasCapital && hasNumber && hasSpecialCharacter;
     }
     public boolean checkcellNumber(){
+        if(cellNumber == null)return false;
         String regex = "^\\+27\\d{9}$";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(cellNumber);

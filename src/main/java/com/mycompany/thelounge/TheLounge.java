@@ -11,24 +11,26 @@ import java.util.Scanner;
 public class TheLounge {
 
     public static void main(String[] args) {
-       LoungeLogin obj = new LoungeLogin(firstName, lastName, userName, Password, cellNumber);
        Scanner input = new Scanner(System.in);
+       LoungeLogin obj = new LoungeLogin();
        
        System.out.println("----Welcome to The Lounge----");
-       System.out.println("--Registration");
+       System.out.println("-----Registration-----");
        
-       System.out.print("Enter you First Name");
+       System.out.print("Enter you First Name: ");
        String name = input.nextLine();
-       System.out.print("Enter your Last Name");
+       obj.setFirstName(name);
+       System.out.print("Enter your Last Name: ");
        String lastname = input.nextLine();
+       obj.setLastName(lastname);
       
        boolean isRegistered = false;
        while(!isRegistered){
-           System.out.print("Enter Username: ");
+           System.out.println("Enter Username: ");
            String userName = input.nextLine();
-           System.out.print("Enter Password: ");
+           System.out.println("Enter Password: ");
            String Password = input.nextLine();
-           System.out.print("Enter Cellphone Number");
+           System.out.println("Enter Cellphone Number(start with +27): ");
            String cellNumber = input.nextLine();
            
            String regMessage= obj.registerUser(userName, Password, cellNumber);
@@ -40,6 +42,20 @@ public class TheLounge {
                System.out.println("Please try registering again with the correct details");
            }
        }
-      
+      System.out.println("\n--Login to The Lounge");
+      boolean loggedIn = false;
+      while(!loggedIn){
+          System.out.println("Enter Username: ");
+          String loginUsername = input.nextLine();
+          System.out.println("Enter password: ");
+          String loginPassword = input.nextLine();
+          String statusMessage = obj.returnLoginStatus(loginUsername, loginPassword);
+          System.out.println(statusMessage);
+          
+          if(obj.loginUser(loginUsername, loginPassword)){
+              loggedIn =true;
+          }
+      }
+      input.close();
     }
 }
