@@ -3,7 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.mycompany.thelounge;
-
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
 /**
  *
  * @author Student
@@ -34,5 +35,11 @@ public class LoungeLogin {
         boolean hasSpecialCharacter = Password.matches(".*[^a-zA-Z0-9].*");
         
         return hasCapital && hasNumber && hasSpecialCharacter;
+    }
+    public boolean checkcellNumber(){
+        String regex = "^\\+27\\d{9}$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(cellNumber);
+        return matcher.matches();
     }
 }
