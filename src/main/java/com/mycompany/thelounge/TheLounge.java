@@ -36,7 +36,7 @@ public class TheLounge {
            String regMessage= obj.registerUser(userName, Password, cellNumber);
            System.out.println(regMessage);
            
-           if(regMessage.equals("Username and password successfully captured")){
+           if(obj.isRegistered()){
                isRegistered = true;
            }else{
                System.out.println("Please try registering again with the correct details");
@@ -46,13 +46,14 @@ public class TheLounge {
       boolean loggedIn = false;
       while(!loggedIn){
           System.out.println("Enter Username: ");
-          String loginUsername = input.nextLine();
+          String entereduserName = input.nextLine();
           System.out.println("Enter password: ");
-          String loginPassword = input.nextLine();
-          String statusMessage = obj.returnLoginStatus(loginUsername, loginPassword);
+          String enteredPassword = input.nextLine();
+          
+          String statusMessage = obj.returnLoginStatus(entereduserName, enteredPassword);
           System.out.println(statusMessage);
           
-          if(obj.loginUser(loginUsername, loginPassword)){
+          if(obj.loginUser(entereduserName, enteredPassword)){
               loggedIn =true;
           }
       }
