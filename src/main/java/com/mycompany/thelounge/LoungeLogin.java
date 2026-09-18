@@ -42,20 +42,33 @@ public class LoungeLogin {
         Matcher matcher = pattern.matcher(cellNumber);
         return matcher.matches();
     }
-    public String authenticateUser(String userName, String Password, String cellNumber){
+    public String registerUser(String userName, String Password, String cellNumber){
         if(!checkuserName()){
-            return "Username is not correctly formatted. Ensure that your username contains an underscore and is five characters length at most";
+            return "Username is not correctly formatted. Ensure that your username contains an underscore and is at most five characters long";
         }
         if(checkPassword()){
-            return "Password is not correctly formatted. Enter at leas eught character, a capital letter, a number and a special Character";
+            return "Password is not correctly formatted. Enter at least eight character, a capital letter, a number and a special Character";
         }
         if(checkcellNumber()){
-            return "Cellphone number is incorrectly formattedor does not contain internation code";
+            return "Cellphone number is incorrectly formatted or does not contain internation code";
         }
         this.userName = userName;
         this.Password = Password;
         this.cellNumber = cellNumber; 
         
         return "Username and Password successfully captured";
+    }
+    public boolean loginUser(String entereduserName, String enteredPassword){
+        if(userName == null || Password == null){
+            return false;
+        }
+        return userName.equals(entereduserName) && Password.equals(enteredPassword);
+    }
+    public String returnLoginStatus(String entereduserName, String enteredPassword){
+        if(loginUser(entereduserName, enteredPassword)){
+            return "Welcome " + firstName + " " + lastName + ", it is great to see you again";
+        }else{
+            return "Username or password incorrect. Please try again";
+        }
     }
 }
