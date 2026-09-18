@@ -80,4 +80,8 @@ public class LoungeLogin {
             return "Username or password incorrect. Please try again";
         }
     }
+
+    boolean checkUserName(String kyl_1) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }
