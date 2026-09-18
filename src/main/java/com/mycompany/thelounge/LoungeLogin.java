@@ -31,10 +31,11 @@ public class LoungeLogin {
         this.lastName = lastName;
     }
     public boolean checkuserName(){
-        return userName.contains("_")&& userName.length() <= 5;
+        if(userName == null) return false;
+        return userName.contains("_")&& userName.length()<= 5;
     }
-    public boolean checkPassword(){
-        if(Password.length() <8){
+    public boolean checkPasswordComplexity(){
+        if(Password == null|| Password.length() <8){
             return false;
         }
         boolean hasCapital = Password.matches(".*[A-Z].*");
@@ -44,7 +45,7 @@ public class LoungeLogin {
         return hasCapital && hasNumber && hasSpecialCharacter;
     }
     public boolean checkcellNumber(){
-        if(cellNumber == null)return false;
+        if(cellNumber == null) return false;
         String regex = "^\\+27\\d{9}$";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(cellNumber);
@@ -54,10 +55,10 @@ public class LoungeLogin {
         if(!checkuserName()){
             return "Username is not correctly formatted. Ensure that your username contains an underscore and is at most five characters long";
         }
-        if(checkPassword()){
+        if(!checkPasswordComplexity()){
             return "Password is not correctly formatted. Enter at least eight character, a capital letter, a number and a special Character";
         }
-        if(checkcellNumber()){
+        if(!checkcellNumber()){
             return "Cellphone number is incorrectly formatted or does not contain internation code";
         }
         this.userName = userName;
@@ -67,7 +68,7 @@ public class LoungeLogin {
         return "Username and Password successfully captured";
     }
     public boolean loginUser(String entereduserName, String enteredPassword){
-        if(userName == null || Password == null){
+        if(this.userName == null || this.Password == null){
             return false;
         }
         return userName.equals(entereduserName) && Password.equals(enteredPassword);
